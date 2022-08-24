@@ -1,7 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 const RegisterPage = () => {
     return (
         <>
@@ -24,7 +22,7 @@ const RegisterPage = () => {
                     </section>
 
                     <section className="mt-10">
-                        <Form className="flex flex-col">
+                        <form className="flex flex-col">
                             <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-sm mb-2 ml-3" for="name"><span className="text-gray-700">Name</span> <span className="text-error-500">*</span></label>
                                 <input type="text" id="name" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
@@ -32,15 +30,6 @@ const RegisterPage = () => {
                             <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-gray-700 text-sm mb-2 ml-3" for="age">Age</label>
                                 <input type="number" id="age" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3"/>
-                            </div>
-                            <div className="mb-6 pt-3 rounded bg-gray-200">
-                                <label className="block text-gray-700 text-sm mb-2 ml-3" for="gender">Gender</label>
-                                <Form.Select aria-label="gender"
-                                className="block mb-2 ml-3 rounded focus:outline-none border-b-4 focus:border-primary-500 w-3/4 bg-gray-200">
-                                    <option value="undeclared">Undeclared</option>
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
-                                </Form.Select>
                             </div>
                             <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-gray-700 text-sm mb-2 ml-3" for="email"><span className="text-gray-700">Email</span> <span className="text-error-500">*</span></label>
@@ -54,9 +43,9 @@ const RegisterPage = () => {
                                 <label className="block text-gray-700 text-sm mb-2 ml-3" for="passwordConfirm"><span className="text-gray-700">Confirm Password</span> <span className="text-error-500">*</span></label>
                                 <input type="passwordConfirm" id="passwordConfirm" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
                             </div>
-                            <Button className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" 
-                            type="submit">Sign Up</Button>
-                        </Form>
+                            <button className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" 
+                            type="submit">Sign Up</button>
+                        </form>
                     </section>
                 </div>
 
