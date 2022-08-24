@@ -9,7 +9,8 @@ body {
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-    background: #121829 url('../public/Background.png');
+    background: #121829 url('../public/Background.png') no-repeat;
+    background-size: cover;
 }
 .carousel-overlay {
     background: linear-gradient(269.96deg, rgba(29, 29, 29, 0) 0.04%, rgba(29, 29, 29, 0.8) 99.5%);
