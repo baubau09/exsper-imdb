@@ -9,6 +9,8 @@ export default function Home() {
                 <meta name="description" content="Home to the movie experts" />
                 <link rel="icon" href="/logo.png" />
             </Head>
+
+            <Header/>
         </>
     );
 }

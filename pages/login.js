@@ -38,7 +38,7 @@ const LoginPage = () => {
                 </div>
 
                 <div className="max-w-lg mx-auto text-center mt-12 mb-6">
-                    <p className="text-white">Don't have an account? <a href="#" className="font-bold hover:text-primary-100">Register here</a>.</p>
+                    <p className="text-white">Don't have an account? <a href="/register" className="font-bold hover:text-primary-100">Register here</a>.</p>
                 </div>
 
                 <div className="max-w-lg mx-auto flex justify-center text-white">
