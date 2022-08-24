@@ -46,7 +46,7 @@ module.exports = {
                     800: '#492C66',
                     900: '#241633'
                 },
-                'grey': {
+                grey: {
                     50: '#EBEEF5',
                     100: '#C3C8D4',
                     200: '#A8AEBF',
@@ -58,7 +58,7 @@ module.exports = {
                     800: '#20283E',
                     900: '#121829'
                 },
-                'success': {
+                success: {
                     50: '#E1F9F2',
                     100: '#CDF5E9',
                     200: '#9BEBD3',
