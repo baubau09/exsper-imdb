@@ -3,12 +3,21 @@ module.exports = {
     content: [
         "./pages/**/*.{js,ts,jsx,tsx}",
         "./components/**/*.{js,ts,jsx,tsx}",
+        './node_modules/tw-elements/dist/js/**/*.js'
     ],
     theme: {
         fontFamily: {
             sans: ['Poppins', 'sans-serif'],
         },
         extend: {
+            screens: {
+                'xs': {'min': '320px', 'max': '639px'}
+            },
+            spacing: {
+                '40pct': '40%',
+                '50pct': '50%',
+                '60pct': '60%'
+            },
             colors: {
                 primary: {
                     50: '#EBE9FE',
@@ -97,5 +106,5 @@ module.exports = {
             }
         }
     },
-    plugins: [],
+    plugins: [require('tw-elements/dist/plugin')],
 }

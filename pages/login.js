@@ -10,9 +10,9 @@ const LoginPage = () => {
             </Head>
             <div className="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
                 <div className="max-w-lg mx-auto">
-                    <a href="/">
-                        <img src="./logo_text.png" width="50%" height="50%"/>
-                    </a>
+
+                    <img src="./logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
+
                 </div>
 
                 <div className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
@@ -24,11 +24,11 @@ const LoginPage = () => {
                     <section className="mt-10">
                         <form className="flex flex-col">
                             <div className="mb-6 pt-3 rounded bg-gray-200">
-                                <label className="block text-gray-700 text-sm mb-2 ml-3" for="email">Email</label>
+                                <label className="block text-gray-700 text-sm mb-2 ml-3" htmlFor="email">Email</label>
                                 <input type="text" id="email" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
                             </div>
                             <div className="mb-6 pt-3 rounded bg-gray-200">
-                                <label className="block text-gray-700 text-sm mb-2 ml-3" for="password">Password</label>
+                                <label className="block text-gray-700 text-sm mb-2 ml-3" htmlFor="password">Password</label>
                                 <input type="password" id="password" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
                             </div>
                             <button className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" 
