@@ -10,7 +10,7 @@ const Header = () => {
                 <nav aria-label="menu nav" className="pt-2 md:pt-1 pb-4 px-1 h-auto fixed w-full z-20 top-0 bg-opacity-75 bg-gray-900">
                     <div className="flex flex-wrap items-center">
                         <div className="ml-2 flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
-                                <img src="./logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
+                                <img src="/logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
                         </div>
 
                         <div className="pt-2 flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">

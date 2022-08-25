@@ -16,7 +16,13 @@ module.exports = {
             spacing: {
                 '40pct': '40%',
                 '50pct': '50%',
-                '60pct': '60%'
+                '60pct': '60%',
+                '70pct': '70%',
+                '80pct': '80%'
+            },
+            fontFamily: {
+                'primary': ['Poppins', 'sans-serif'],
+                'headings': ['Montserrat', 'sans-serif']
             },
             colors: {
                 primary: {
