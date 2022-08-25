@@ -9,7 +9,7 @@ body {
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-    background: #121829 url('../public/Background.png') no-repeat;
+    background: #121829 url('/Background.png') no-repeat;
     background-size: cover;
 }
 a {

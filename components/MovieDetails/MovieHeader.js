@@ -4,7 +4,7 @@ const MovieHeader = ({bg, title, year, rating, genres}) => {
     return (
         <>
             <div className="text-white mx-auto w-10/12 xs:mt-44 md:mt-32 backdrop"
-                style={{ background: bg, backgroundSize: 'cover' }}>
+                style={{ background: bg, backgroundSize: 'cover', backgroundPositionX: 'center' }}>
                 <div className="backdrop" style={{ display: 'hidden' }} />
                 <div className="movie-detail-title relative w-fit h-fit">
                     <h1 className="text-xl px-8 py-8 md:text-4xl md:px-12 md:py-12">
