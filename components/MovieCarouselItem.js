@@ -4,7 +4,7 @@ const MovieCarouselItem = ({title, description, img, rating, link}) => {
     return (
         <>
             <div className="carousel-item float-left w-full">
-                <a href="/login">
+                <a href={link}>
                     <img
                         src={img}
                         className="block w-full carousel-overlay"
