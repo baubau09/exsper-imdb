@@ -34,7 +34,7 @@ const MovieCarousel = () => {
                 </div>
                 <div className="carousel-inner relative w-full overflow-hidden">
                     <div className="carousel-item active float-left w-full">
-                        <a href="/login">
+                        <a href="/movie/464052">
                             <img
                                 src="./card-img 1.png"
                                 className="block w-full carousel-overlay"
@@ -47,7 +47,7 @@ const MovieCarousel = () => {
                                 <p>Wonder Woman finds herself battling two opponents, Maxwell Lord, a shrewd entrepreneur, and Barbara Minerva, a friend-turned-foe. Meanwhile, she also ends up crossing paths with her love interest.</p>
                                 <a className="mt-2 rounded-xl bg-primary-400 hover:bg-primary-300
                                 border px-5 py-3 w-fit border-transparent text-base font-medium text-white transition-colors flex"
-                                type="button" href="/register"><img src="./watch_icon.svg"/>&nbsp;Watch trailer</a>
+                                type="button" href="/movie/464052"><img src="./watch_icon.svg"/>&nbsp;Watch trailer</a>
                             </div>
                             <div class="carousel-caption block md:hidden absolute py-0 mb-9 bottom-0">
                                 <h1 className="text-md">Wonder Woman: 1984</h1>
