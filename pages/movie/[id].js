@@ -42,11 +42,11 @@ const MoviePage = ({data, data_castcrew, imgurl, movieID}) => {
     const directors = crewArr && crewArr.filter((el) => el.job === "Director")
     const writers = crewArr && crewArr.filter((el) => el.department === "Writing")
     const starrings = castArr && castArr.filter((el) => el.order < 3)
-
+    const pageTitle = data.title + " - EXSPER"
     return (
         <>
             <Head>
-                <title>{data.title} - EXSPER</title>
+                <title>{pageTitle}</title>
                 <meta name="description" content="Home to the movie experts" />
                 <link rel="icon" href="/logo.png" />
             </Head>

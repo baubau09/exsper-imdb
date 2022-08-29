@@ -35,4 +35,11 @@
         bottom: 90px;
     }
 
+    .poster {
+        width: 180px;
+        height: 280px;
+        border-radius: 14px;
+        object-fit: cover;
+    }
+
 }

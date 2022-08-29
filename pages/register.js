@@ -1,6 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
+import { useForm } from "react-hook-form";
+import useRegister from '../hooks/useRegister';
+
 const RegisterPage = () => {
+    const { register, handleSubmit, formState: { errors }, getValues } = useForm();
+    const { signup } = useRegister()
+
     return (
         <>
             <Head>
@@ -20,27 +26,30 @@ const RegisterPage = () => {
                     </section>
 
                     <section className="mt-10">
-                        <form className="flex flex-col">
+                        <form className="flex flex-col" onSubmit={handleSubmit(signup)}>
                             <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-sm mb-2 ml-3" htmlFor="name"><span className="text-gray-700">Name</span> <span className="text-error-500">*</span></label>
-                                <input type="text" id="name" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
-                            </div>
-                            <div className="mb-6 pt-3 rounded bg-gray-200">
-                                <label className="block text-gray-700 text-sm mb-2 ml-3" htmlFor="age">Age</label>
-                                <input type="number" id="age" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3"/>
+                                <input type="text" id="name" 
+                                {...register("name", {required: true})}
+                                className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
                             </div>
                             <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-gray-700 text-sm mb-2 ml-3" htmlFor="email"><span className="text-gray-700">Email</span> <span className="text-error-500">*</span></label>
-                                <input type="text" id="email" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
+                                <input type="text" id="email" 
+                                {...register("email", {required: true, pattern: /^\S+@\S+$/i})}
+                                className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
                             </div>
                             <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-gray-700 text-sm mb-2 ml-3" htmlFor="password"><span className="text-gray-700">Password</span> <span className="text-error-500">*</span></label>
-                                <input type="password" id="password" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
+                                <input type="password" id="password" 
+                                {...register("password", {required: true, min: 8})}
+                                className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
                             </div>
-                            <div className="mb-6 pt-3 rounded bg-gray-200">
+                            {/* <div className="mb-6 pt-3 rounded bg-gray-200">
                                 <label className="block text-gray-700 text-sm mb-2 ml-3" htmlFor="passwordConfirm"><span className="text-gray-700">Confirm Password</span> <span className="text-error-500">*</span></label>
-                                <input type="passwordConfirm" id="passwordConfirm" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
-                            </div>
+                                <input type="passwordConfirm" id="passwordConfirm" 
+                                className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-primary-500 transition duration-500 px-3 pb-3" required/>
+                            </div> */}
                             <button className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" 
                             type="submit">Sign Up</button>
                         </form>

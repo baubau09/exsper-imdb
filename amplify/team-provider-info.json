@@ -1,0 +1,31 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyd5bd157199814-staging-100837-authRole",
+      "UnauthRoleArn": "arn:aws:iam::557044894694:role/amplify-amplifyd5bd157199814-staging-100837-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::557044894694:role/amplify-amplifyd5bd157199814-staging-100837-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-amplifyd5bd157199814-staging-100837-deployment",
+      "UnauthRoleName": "amplify-amplifyd5bd157199814-staging-100837-unauthRole",
+      "StackName": "amplify-amplifyd5bd157199814-staging-100837",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:557044894694:stack/amplify-amplifyd5bd157199814-staging-100837/8ca88700-2782-11ed-96ca-02f7b8b6d440",
+      "AmplifyAppId": "d2zpym7slp1dfu"
+    },
+    "categories": {
+      "auth": {
+        "exsperimdb": {
+          "userPoolId": "ap-southeast-1_zlW2WzgrS",
+          "userPoolName": "newExsper",
+          "webClientId": "e63l4rfa50l3ft0skh5reqb4p",
+          "nativeClientId": "2fju9j8me5tn5bn9fmn2rfjqst"
+        }
+      },
+      "function": {
+        "ExsperAmplifyPresignupAutoconfirm": {
+          "deploymentBucketName": "amplify-amplifyd5bd157199814-staging-100837-deployment",
+          "s3Key": "amplify-builds/ExsperAmplifyPresignupAutoconfirm-424d36376738345a6b4c-build.zip"
+        }
+      }
+    }
+  }
+}
