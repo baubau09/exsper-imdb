@@ -10,7 +10,7 @@ export default function useAuth() {
     const login = async (values) => {
         try {
             const user = await Auth.signIn(values.email, values.password);
-            console.log(user)
+            //console.log(user)
             router.replace("/")
         } catch (error) {
             console.log('error signing in', error);
