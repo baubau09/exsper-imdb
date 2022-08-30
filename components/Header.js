@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import useAuth from '../hooks/useAuth';
 import { UserContext } from '../lib/context';
-import { useEffect, useState, useCallback, useContext } from 'react';
+import { useState, useContext } from 'react';
 
 const Header = () => {
     const router = useRouter()

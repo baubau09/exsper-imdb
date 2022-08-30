@@ -5,6 +5,15 @@ import dynamic from 'next/dynamic'
 const DynamicCarousel = dynamic(() => import('../components/MovieCarousel'), {
   ssr: false,
 })
+
+export async function getServerSideProps(context) {
+    const data = {}
+    
+    return {
+        props: {data}, 
+    }
+}
+
 export default function Home() {
     return (
         <>

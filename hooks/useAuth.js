@@ -2,6 +2,7 @@
 
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
+import { toast } from 'react-toastify';
 
 export default function useAuth() {
 
@@ -9,9 +10,18 @@ export default function useAuth() {
 
     const login = async (values) => {
         try {
+            toast.success('🦄 Logged In successfully!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             const user = await Auth.signIn(values.email, values.password);
-            //console.log(user)
-            router.replace("/")
+            window.location.href="/"
+            console.log(user)
         } catch (error) {
             console.log('error signing in', error);
         }

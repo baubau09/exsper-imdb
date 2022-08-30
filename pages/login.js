@@ -2,19 +2,32 @@ import React, { useContext } from 'react'
 import Head from 'next/head'
 import { useForm } from "react-hook-form";
 import useAuth from '../hooks/useAuth';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const LoginPage = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
     const { login } = useAuth();
 
     return (
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <Head>
                 <title>EXSPER - Login</title>
                 <meta name="description" content="Home to the movie experts" />
                 <link rel="icon" href="/logo.png" />
             </Head>
             <div className="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
+                
                 <div className="max-w-lg mx-auto">
 
                     <img src="./logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
