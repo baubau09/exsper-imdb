@@ -2,14 +2,18 @@ import "../styles/globals.css";
 import "../styles/MovieCarousel.css"
 import "../styles/MovieDetails.css"
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Amplify, Auth } from 'aws-amplify';
-import awsconfig from '../src/aws-exports';
+//TODO: Configure vredential for analytics
+import { Amplify, Auth, Analytics, AWSKinesisProvider } from 'aws-amplify';
+import awsconfig from '../aws-exports';
 import { UserContext } from '../lib/context'
 import { useUserData } from '../hooks/useUserData'
 import { useRouter } from 'next/router'
 
-Amplify.configure({...awsconfig, ssr:true});
 
+Analytics.addPluggable(new AWSKinesisProvider());
+Amplify.configure({...awsconfig, ssr:true});
+console.log(awsconfig)
+//TODO: Add Analytics and configuring analytics
 function MyApp({ Component, pageProps }) {
     const router = useRouter()
     const userData = useUserData()

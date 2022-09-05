@@ -1,9 +1,10 @@
-import Image from 'next/image'
+import Image from "next/image";
+import Analytics from "@aws-amplify/analytics";
 
-const MovieCarouselItem = ({title, description, img, rating, link}) => {
+const MovieCarouselItem = ({ title, description, img, rating, link }) => {
     return (
         <>
-            <div className="carousel-item float-left w-full">
+            <div className="float-left w-full carousel-item">
                 <a href={link}>
                     <Image
                         src={img}
@@ -15,22 +16,30 @@ const MovieCarouselItem = ({title, description, img, rating, link}) => {
                         objectFit="cover"
                         objectPosition="center"
                     />
-                    <div className="carousel-caption hidden md:block absolute bottom-5 py-5 mb-2 lg:mb-20 lg:pr-40pct xl:pr-40pct">
-                        <p className="border-transparent border-gray-500 rounded-xl w-fit text-lg bg-gray-800 bg-opacity-50 px-3 py-2 backdrop-blur-lg text-warning-500">
-                            <i className="bi bi-star-fill text-lg"></i> {rating}</p>
-                        <h1 className="text-5xl xl:text-6xl mb-2">{title}</h1>
+
+                    <div className="absolute hidden py-5 mb-2 carousel-caption md:block bottom-5 lg:mb-20 lg:pr-40pct xl:pr-40pct">
+                        <p className="px-3 py-2 text-lg bg-gray-800 bg-opacity-50 border-transparent border-gray-500 rounded-xl w-fit backdrop-blur-lg text-warning-500">
+                            <i className="text-lg bi bi-star-fill"></i> {rating}
+                        </p>
+                        <h1 className="mb-2 text-5xl xl:text-6xl">{title}</h1>
                         <p>{description}</p>
-                        <button className="mt-2 rounded-xl bg-primary-400 hover:bg-primary-300
-                                border px-5 py-3 w-fit border-transparent text-base font-medium text-white transition-colors flex"
-                            type="button" href={link}><img src="./watch_icon.svg" />&nbsp;Watch trailer</button>
+                        <button
+                            className="flex px-5 py-3 mt-2 text-base font-medium text-white transition-colors border border-transparent rounded-xl bg-primary-400 hover:bg-primary-300 w-fit"
+                            type="button"
+                            href={link}
+                        >
+                            <img src="./watch_icon.svg" />
+                            &nbsp;Watch trailer
+                        </button>
                     </div>
-                    <div className="carousel-caption block md:hidden absolute py-0 mb-9 bottom-0">
+
+                    <div className="absolute bottom-0 block py-0 carousel-caption md:hidden mb-9">
                         <h1 className="text-md">{title}</h1>
                     </div>
                 </a>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default MovieCarouselItem
+export default MovieCarouselItem;

@@ -24,7 +24,7 @@ export default function Home() {
             </Head>
 
             <Header/>
-            <div className="2xl:container mx-auto">
+            <div className="mx-auto 2xl:container">
             <DynamicCarousel/>
             </div>
         </>
