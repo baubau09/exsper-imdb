@@ -9,11 +9,14 @@ export function useUserData() {
 
     useEffect(() => {
         const getProfile = async () => {
-            const userInfo = await Auth.currentUserInfo();
+            try {
+                const userInfo = await Auth.currentAuthenticatedUser();
 
-            if (userInfo) {
-                setUser(userInfo);
-            } else {
+                if (userInfo) {
+                    setUser(userInfo.attributes);
+                }
+            } catch (error) {
+                //console.log(error)
                 setUser(null)
             }
             setLoading(false)

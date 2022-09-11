@@ -3,12 +3,14 @@ import Head from 'next/head'
 import { useForm } from "react-hook-form";
 import useRegister from '../hooks/useRegister';
 import Link from 'next/link';
-Link
+import Loader from '../components/Loader'
+import { useRouter } from 'next/router';
 
 const RegisterPage = () => {
-    const { register, handleSubmit, formState: { errors }, getValues } = useForm();
-    const { signup } = useRegister()
-
+    const { register, handleSubmit } = useForm();
+    const { signup, loading } = useRegister()
+    const router = useRouter()
+    
     return (
         <>
             <Head>
@@ -18,7 +20,7 @@ const RegisterPage = () => {
             </Head>
             <div className="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
                 <div className="max-w-lg mx-auto">
-                    <img src="./logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
+                    <img src="./logo_text.png" width="50%" height="50%" onClick={() => router.push("/")} style={{cursor: 'pointer'}}/>
                 </div>
 
                 <div className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
@@ -54,6 +56,7 @@ const RegisterPage = () => {
                             </div> */}
                             <button className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" 
                             type="submit">Sign Up</button>
+                            <Loader show={loading}></Loader>
                         </form>
                     </section>
                 </div>

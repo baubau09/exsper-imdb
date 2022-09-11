@@ -6,10 +6,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Loader from '../components/Loader';
+import { useRouter } from 'next/router';
 
 const LoginPage = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
     const { login, loading } = useAuth();
+    const router = useRouter()
 
     return (
         <>
@@ -33,7 +35,7 @@ const LoginPage = () => {
                 
                 <div className="max-w-lg mx-auto">
 
-                    <img src="./logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
+                    <img src="./logo_text.png" width="50%" height="50%" onClick={() => router.push("/")} style={{cursor: 'pointer'}}/>
 
                 </div>
 

@@ -15,7 +15,7 @@ export default function useAuth() {
         try {
             
             const user = await Auth.signIn(values.email, values.password);
-            console.log(user)
+            console.log(user.attributes)
             router.push("/")
         } catch (error) {
             const e = "" + error
@@ -36,7 +36,7 @@ export default function useAuth() {
     const logout = async () => {
         try {
             await Auth.signOut();
-            router.push("/")
+            router.push("/login")
             console.log('user Signed out');
         } catch (error) {
             console.log('error signing out: ', error);
