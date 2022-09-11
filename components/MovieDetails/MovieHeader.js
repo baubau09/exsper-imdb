@@ -8,13 +8,15 @@ const MovieHeader = ({ bg, title, year, rating, genres }) => {
                 eventType: "MovieView",
                 //TODO: Get user ID here
                 // userId: user.attributes.sub,
-                year: year,
-                title: title,
-                genres: genres,
-                rating: rating,
-                timestamp: new Date(),
+                UserId: "1",
+                Event: {
+                    movieTitle: title,
+                    movieYear: year,
+                    movieGenres: genres,
+                    movieRating: rating
+                }
             },
-            streamName: "", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
+            streamName: "movieRecEx", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
         },
         "AWSKinesis"
     );
