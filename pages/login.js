@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import useAuth from '../hooks/useAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
+import Loader from '../components/Loader';
+
 const LoginPage = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
-    const { login } = useAuth();
+    const { login, loading } = useAuth();
 
     return (
         <>
@@ -56,12 +59,13 @@ const LoginPage = () => {
                             </div>
                             <button className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" 
                             type="submit">Log In</button>
+                            <div><Loader show={loading}></Loader></div>
                         </form>
                     </section>
                 </div>
 
                 <div className="max-w-lg mx-auto text-center mt-12 mb-6">
-                    <p className="text-white">Don't have an account? <a href="/register" className="font-bold hover:text-primary-100">Register here</a>.</p>
+                    <p className="text-white">Don't have an account? <Link href="/register"><a className="font-bold hover:text-primary-100">Register here</a></Link>.</p>
                 </div>
 
                 <div className="max-w-lg mx-auto flex justify-center text-white">

@@ -12,10 +12,10 @@ Amplify.configure({...awsconfig, ssr:true});
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter()
-    const userData = useUserData()
+    const {user} = useUserData()
 
     return (
-        <UserContext.Provider value={userData}>
+        <UserContext.Provider value={user}>
             <Component key={router.asPath} {...pageProps} />
         </UserContext.Provider>
         

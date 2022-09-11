@@ -9,40 +9,28 @@ import MovieOverview from '../../components/MovieDetails/MovieOverview';
 export async function getServerSideProps(context) {
     const movieID = context.params.id;
     const apiurl = process.env.MV_DETAIL + movieID + "?api_key=" + process.env.TMDB_API_KEY + "&language=en-US"
-    const imgurl = process.env.IMG_URL
-    const castcrewurl = process.env.MV_DETAIL + movieID + "/credits" + "?api_key=" + process.env.TMDB_API_KEY + "&language=en-US"
     const res = await fetch(
         apiurl,
         {
             method: 'GET'
         }
     )
-    const res_castcrew = await fetch(
-        castcrewurl,
-        {
-            method: 'GET'
-        }
-    )
     const data = await res.json()
-    const data_castcrew = await res_castcrew.json()
 
     return {
-        props: {data, data_castcrew, imgurl, movieID}, // will be passed to the page component as props
+        props: {data, movieID}, // will be passed to the page component as props
     }
 }
 
-const MoviePage = ({data, data_castcrew, imgurl, movieID}) => {
+const MoviePage = ({data, movieID}) => {
+    const imgurl = "https://image.tmdb.org/t/p/original"
     const poster = imgurl + data.poster_path
     const backdrop = imgurl + data.backdrop_path
     const bg = 'linear-gradient(180deg, rgba(54, 44, 146, 0.4) 0%, rgba(18, 98, 151, 0.4) 100%), url(' + backdrop + ')' 
     const year = moment(data.release_date).format("YYYY")
     const genres = data.genres
-    const crewArr = data_castcrew && data_castcrew.crew
-    const castArr = data_castcrew && data_castcrew.cast
-    const directors = crewArr && crewArr.filter((el) => el.job === "Director")
-    const writers = crewArr && crewArr.filter((el) => el.department === "Writing")
-    const starrings = castArr && castArr.filter((el) => el.order < 3)
     const pageTitle = data.title + " - EXSPER"
+    
     return (
         <>
             <Head>
@@ -64,12 +52,9 @@ const MoviePage = ({data, data_castcrew, imgurl, movieID}) => {
             overview={data.overview} 
             release_date={data.release_date} 
             runtime={data.runtime} 
-            starrings={starrings} 
-            directors={directors}
-            writers={writers}
+            movieID={movieID}
             />
         </>
     )
 }
-
 export default MoviePage

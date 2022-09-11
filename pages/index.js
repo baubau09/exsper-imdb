@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Header from "../components/Header"
 import dynamic from 'next/dynamic'
-
 const DynamicCarousel = dynamic(() => import('../components/MovieCarousel'), {
   ssr: false,
 })

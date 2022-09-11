@@ -3,11 +3,14 @@ import { useRouter } from 'next/router'
 import useAuth from '../hooks/useAuth';
 import { UserContext } from '../lib/context';
 import { useState, useContext } from 'react';
+import Loader from './Loader';
+import { useUserData } from '../hooks/useUserData';
 
 const Header = () => {
     const router = useRouter()
-    const { user } = useContext(UserContext);
+    // const { user } = useContext(UserContext);
     const {logout} = useAuth()
+    const {user, loading} = useUserData()
 
     return (
         <>
@@ -15,7 +18,7 @@ const Header = () => {
                 <nav aria-label="menu nav" className="pt-2 md:pt-1 pb-4 px-1 h-auto fixed w-full z-20 top-0 bg-opacity-75 bg-gray-900">
                     <div className="flex flex-wrap items-center">
                         <div className="ml-2 flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
-                                <img src="/logo_text.png" width="50%" height="50%" onClick={() => window.location.href = "/"} style={{cursor: 'pointer'}}/>
+                                <img src="/logo_text.png" width="50%" height="50%" onClick={() => router.push("/")} style={{cursor: 'pointer'}}/>
                         </div>
 
                         <div className="pt-2 flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
@@ -37,6 +40,9 @@ const Header = () => {
                                 type="button" onClick={() => logout()}>Sign Out</button>
                             
                             : 
+                            loading ? 
+                            <div></div>
+                            :
                             <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
                                 <button className="rounded-xl bg-primary-400 hover:bg-primary-500
                                 w-full flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium text-white md:py-3 md:px-6 mx-3 transition-colors"

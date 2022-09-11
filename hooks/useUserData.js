@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 export function useUserData() {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -15,10 +16,11 @@ export function useUserData() {
             } else {
                 setUser(null)
             }
+            setLoading(false)
         };
 
         getProfile();
     }, [user]);
     
-    return { user };
+    return { user, loading };
 }

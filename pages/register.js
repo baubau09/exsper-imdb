@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import { useForm } from "react-hook-form";
 import useRegister from '../hooks/useRegister';
+import Link from 'next/link';
+Link
 
 const RegisterPage = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
@@ -57,7 +59,7 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="max-w-lg mx-auto text-center mt-12 mb-6">
-                    <p className="text-white">Already had an account? <a href="/login" className="font-bold hover:text-primary-100">Login here</a>.</p>
+                    <p className="text-white">Already had an account? <Link href="/login"><a className="font-bold hover:text-primary-100">Login here</a></Link>.</p>
                 </div>
 
                 <div className="max-w-lg mx-auto flex justify-center text-white">
