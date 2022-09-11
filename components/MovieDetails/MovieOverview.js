@@ -18,7 +18,7 @@ const CastCrewOverview = ({movieID}) => {
             <p className="text-sm mb-1 text-gray-400">
                 Starrings
             </p>
-            <p className="text-lg mb-5 text-gray-300">
+            <p className="text-lg mb-5 text-gray-200">
                 {
                     starrings &&
                     starrings.map((e, i) => {
@@ -36,7 +36,7 @@ const CastCrewOverview = ({movieID}) => {
             <p className="text-sm mb-1 text-gray-400">
                 Directed by
             </p>
-            <p className="text-lg mb-5 text-gray-300">
+            <p className="text-lg mb-5 text-gray-200">
                 {
                     directors &&
                     directors.map((e, i) => {
@@ -54,7 +54,7 @@ const CastCrewOverview = ({movieID}) => {
             <p className="text-sm mb-1 text-gray-400">
                 Written by
             </p>
-            <p className="text-lg mb-5 text-gray-300">
+            <p className="text-lg mb-5 text-gray-200">
                 {
                     writers &&
                     writers.map((e, i) => {
@@ -91,19 +91,19 @@ const MovieOverview = ({poster, tagline, overview, release_date, runtime, movieI
                     <p className="text-lg md:text-xl font-bold mb-5">
                         {tagline}
                     </p>
-                    <p className="text-base md:text-lg mb-5 text-gray-300">
+                    <p className="text-base md:text-lg mb-5 text-gray-200">
                         {overview}
                     </p>
                     <p className="text-sm mb-1 text-gray-400">
                         Release Date
                     </p>
-                    <p className="text-base md:text-lg mb-5 text-gray-300">
+                    <p className="text-base md:text-lg mb-5 text-gray-200">
                         {moment(release_date).format("MMMM Do YYYY")}
                     </p>
                     <p className="text-sm mb-1 text-gray-400">
                         Duration
                     </p>
-                    <p className="text-base md:text-lg mb-5 text-gray-300">
+                    <p className="text-base md:text-lg mb-5 text-gray-200">
                         {runtime} min
                     </p>
                     <CastCrewOverview movieID={movieID}></CastCrewOverview>

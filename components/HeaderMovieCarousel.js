@@ -1,7 +1,7 @@
 import React from 'react'
 import "tw-elements";
 import data from "../data/welcome_carousel.json"
-import MovieCarouselItem from './MovieCarouselItem';
+import MovieCarouselItem from './HeaderMovieCarouselItem';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -47,7 +47,7 @@ const MovieCarousel = () => {
                                     alt="Wonder Woman: 1984"
                                     width={1700}
                                     height={648}
-                                    quality={100}
+                                    quality={85}
                                     objectFit="cover"
                                     objectPosition="center"
                                 />

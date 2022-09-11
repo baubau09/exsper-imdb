@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Header from "../components/Header"
 import dynamic from 'next/dynamic'
-const DynamicCarousel = dynamic(() => import('../components/MovieCarousel'), {
+const HeaderDynamicCarousel = dynamic(() => import('../components/HeaderMovieCarousel'), {
   ssr: false,
 })
 
@@ -24,7 +24,7 @@ export default function Home() {
 
             <Header/>
             <div className="2xl:container mx-auto">
-            <DynamicCarousel/>
+            <HeaderDynamicCarousel/>
             </div>
         </>
     );
