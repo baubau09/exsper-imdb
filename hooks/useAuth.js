@@ -10,6 +10,7 @@ export default function useAuth() {
 
     const login = async (values) => {
         try {
+            const user = await Auth.signIn(values.email, values.password);
             toast.success('🦄 Logged In successfully!', {
                 position: "top-center",
                 autoClose: 3000,
@@ -19,10 +20,18 @@ export default function useAuth() {
                 draggable: true,
                 progress: undefined,
             });
-            const user = await Auth.signIn(values.email, values.password);
             window.location.href="/"
             console.log(user)
         } catch (error) {
+            toast.error('Error logging in', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             console.log('error signing in', error);
         }
     }
