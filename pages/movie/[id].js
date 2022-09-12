@@ -55,7 +55,7 @@ const MoviePage = ({data, data_castcrew, imgurl, movieID}) => {
             {/** 
              * Backdrop and Title
             */}
-            <MovieHeader bg={bg} title={data.title} year={year} genres={genres} rating={data.vote_average.toFixed(1)}/>
+            <MovieHeader id={movieID} bg={bg} title={data.title} year={year} genres={genres} rating={data.vote_average.toFixed(1)}/>
              {/** 
              * Poster and Basic details
             */}

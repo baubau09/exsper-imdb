@@ -1,20 +1,34 @@
 import React from "react";
 import { Amplify, Analytics } from "aws-amplify";
 
-const MovieHeader = ({ bg, title, year, rating, genres }) => {
+const MovieHeader = ({ id ,bg, title, year, rating, genres }) => {
+    // console.log("MovieHeader");
+    fetchData();
+    async function fetchData() {
+        console.log("fetchData");
+        const data = fetch("https://z1hi6ssas5.execute-api.ap-southeast-1.amazonaws.com/getPersonalize?userId=1&numResults=4")
+        .then(data => data.json())
+        .then(json => console.log(json))
+        .catch(err => console.log(err));
+        // console.log(json);
+    }
+
     Analytics.record(
         {
             data: {
-                eventType: "MovieView",
+                EventType: "clicked",
                 //TODO: Get user ID here
                 // userId: user.attributes.sub,
                 UserId: "1",
-                Event: {
-                    movieTitle: title,
-                    movieYear: year,
-                    movieGenres: genres,
-                    movieRating: rating
-                }
+                SessionId: "2",
+                ItemId: id,
+                // Event: {
+                    
+                //     // movieTitle: title,
+                //     // movieYear: year,
+                //     // movieGenres: genres,
+                //     // movieRating: rating
+                // }
             },
             streamName: "movieRecEx", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
         },
