@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import "../styles/MovieCarousel.css"
 import "../styles/MovieDetails.css"
+import "../styles/HomeMovieLists.css"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from '../src/aws-exports';
