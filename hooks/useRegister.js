@@ -15,7 +15,7 @@ export default function useRegister() {
                 password: values.password,
                 attributes: {
                     'custom:full_name': values.name,
-					'custom:USER_ID': "1"
+					// 'custom:USER_ID': "1"
                 }
             });
 			toast.success("🦄 Resgitered successfully! Please login", {
