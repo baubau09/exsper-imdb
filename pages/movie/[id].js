@@ -8,7 +8,7 @@ import MovieOverview from '../../components/MovieDetails/MovieOverview';
 
 export async function getServerSideProps(context) {
     const movieID = context.params.id;
-    const apiurl = process.env.MV_DETAIL + movieID + "?api_key=" + process.env.TMDB_API_KEY + "&language=en-US"
+    const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movie/" + movieID
     const res = await fetch(
         apiurl,
         {
@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
 const MoviePage = ({data, movieID}) => {
     const imgurl = "https://image.tmdb.org/t/p/original"
     const poster = imgurl + data.poster_path
-    const backdrop = imgurl + data.backdrop_path
+    const backdrop = imgurl + (data.backdrop_path || data.poster_path)
     const bg = 'linear-gradient(180deg, rgba(54, 44, 146, 0.4) 0%, rgba(18, 98, 151, 0.4) 100%), url(' + backdrop + ')' 
     const year = moment(data.release_date).format("YYYY")
     const genres = data.genres
@@ -43,7 +43,7 @@ const MoviePage = ({data, movieID}) => {
             {/** 
              * Backdrop and Title
             */}
-            <MovieHeader bg={bg} title={data.title} year={year} genres={genres} rating={data.vote_average.toFixed(1)}/>
+            <MovieHeader bg={bg} title={data.title} year={year} genres={genres} rating={parseFloat(data.rating).toFixed(2)}/>
              {/** 
              * Poster and Basic details
             */}

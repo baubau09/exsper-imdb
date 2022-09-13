@@ -18,7 +18,7 @@ export default function useRegister() {
 					// 'custom:USER_ID': "1"
                 }
             });
-			toast.success("🦄 Resgitered successfully! Please login", {
+			toast.success("🦄 Signed up successfully! Please login", {
                 position: "top-center",
                 autoClose: 2000,
                 hideProgressBar: false,

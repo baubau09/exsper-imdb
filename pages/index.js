@@ -3,18 +3,12 @@ import Header from "../components/Header"
 import dynamic from 'next/dynamic'
 import MovieCardSmall from "../components/Home/MovieCardSmall";
 import MovieCardBig from "../components/Home/MovieCardBig";
+import MovieListSmall from "../components/Home/MovieListSmall";
+import MovieListBig from "../components/Home/MovieListBig";
 
 const HeaderDynamicCarousel = dynamic(() => import('../components/HeaderMovieCarousel'), {
   ssr: false,
 })
-
-export async function getServerSideProps(context) {
-    const data = {}
-    
-    return {
-        props: {data}, 
-    }
-}
 
 export default function Home() {
     return (
@@ -32,17 +26,22 @@ export default function Home() {
                     <div className="mt-14 mb-11 pl-11">
                         <h2 className="text-4xl text-white uppercase font-headings">Top-rated</h2>
                     </div>
-                    <MovieCardSmall/>
+                    <MovieListSmall/>
                 </div>
                 <div>
                     <div className="mt-14 mb-11 pl-11 mt">
                         <h2 className="text-4xl text-white uppercase font-headings">Most popular</h2>
                     </div>
-                    <MovieCardBig/>
+                    <MovieListBig/>
                 </div>
-                <div>
+                {/* <div>
                     <div className="mt-14 mb-11 pl-11 mt">
                         <h2 className="text-4xl text-white uppercase font-headings">Featured trailers</h2>
+                    </div>
+                </div> */}
+                <div>
+                    <div className="mt-14 mb-11 pl-11 mt">
+                        <h2 className="text-4xl text-white uppercase font-headings">Top picks for you</h2>
                     </div>
                 </div>
                 <div>
