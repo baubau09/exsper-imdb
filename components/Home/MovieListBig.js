@@ -15,7 +15,8 @@ const MovieListBig= () => {
             <div className="hidden lg:block">
                 <Swiper
                     // install Swiper modules
-                    modules={[Navigation, Pagination, Autoplay]}
+                    // modules={[Navigation, Pagination, Autoplay]}
+                    modules={[Navigation, Pagination]}
                     slidesPerView={3}
                     spaceBetween={0}
                     pagination={{ 
@@ -25,11 +26,11 @@ const MovieListBig= () => {
                     navigation={{
                         enabled: true
                     }}
-                    autoplay={{
-                        enabled: true,
-                        delay: 5000,
-                        disableOnInteraction: true,
-                    }}
+                    // autoplay={{
+                    //     enabled: true,
+                    //     delay: 5000,
+                    //     disableOnInteraction: true,
+                    // }}
                     // observer={true}
                 >
                     {mostViewedMovies && mostViewedMovies.map((e, i) => {
@@ -49,17 +50,18 @@ const MovieListBig= () => {
             <div className="block lg:hidden">
                 <Swiper
                     // install Swiper modules
-                    modules={[Navigation, Autoplay]}
+                    // modules={[Navigation, Autoplay]}
+                    modules={[Navigation]}
                     slidesPerView={1}
                     spaceBetween={1}
                     navigation={{
                         enabled: true
                     }}
-                    autoplay={{
-                        enabled: true,
-                        delay: 3000,
-                        disableOnInteraction: true,
-                    }}
+                    // autoplay={{
+                    //     enabled: true,
+                    //     delay: 3000,
+                    //     disableOnInteraction: true,
+                    // }}
                 >
                     {mostViewedMovies && mostViewedMovies.map((e, i) => {
                         return (

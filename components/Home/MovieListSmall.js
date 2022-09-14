@@ -15,14 +15,15 @@ const MovieListSmall = () => {
             <div className="hidden lg:block">
                 <Swiper
                     // install Swiper modules
-                    modules={[Navigation, Pagination, Autoplay]}
+                    // modules={[Navigation, Pagination, Autoplay]}
+                    modules={[Navigation, Pagination]}
                     slidesPerView={4}
                     spaceBetween={24}
-                    autoplay={{
-                        enabled: true,
-                        delay: 5000,
-                        disableOnInteraction: true,
-                    }}
+                    // autoplay={{
+                    //     enabled: true,
+                    //     delay: 5000,
+                    //     disableOnInteraction: true,
+                    // }}
                     pagination={{ 
                         enabled: true,
                         clickable: true 
@@ -49,17 +50,18 @@ const MovieListSmall = () => {
             <div className="block lg:hidden">
                 <Swiper
                     // install Swiper modules
-                    modules={[Navigation, Autoplay]}
+                    // modules={[Navigation, Autoplay]}
+                    modules={[Navigation]}
                     slidesPerView={2}
                     spaceBetween={12}
                     navigation={{
                         enabled: true
                     }}
-                    autoplay={{
-                        enabled: true,
-                        delay: 3000,
-                        disableOnInteraction: true,
-                    }}
+                    // autoplay={{
+                    //     enabled: true,
+                    //     delay: 3000,
+                    //     disableOnInteraction: true,
+                    // }}
                 >
                     {topRatedMovies && topRatedMovies.map((e, i) => {
                         return (

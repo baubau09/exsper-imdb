@@ -7,7 +7,7 @@ import MovieListSmall from "../components/Home/MovieListSmall";
 import MovieListBig from "../components/Home/MovieListBig";
 
 const HeaderDynamicCarousel = dynamic(() => import('../components/HeaderMovieCarousel'), {
-  ssr: false,
+    ssr: false,
 })
 
 export default function Home() {
@@ -19,20 +19,20 @@ export default function Home() {
                 <link rel="icon" href="/logo.png" />
             </Head>
 
-            <Header/>
+            <Header />
             <div className="2xl:container mx-auto">
-                <HeaderDynamicCarousel/>
+                <HeaderDynamicCarousel />
                 <div>
                     <div className="mt-14 mb-11 pl-11">
                         <h2 className="text-4xl text-white uppercase font-headings">Top-rated</h2>
                     </div>
-                    <MovieListSmall/>
+                    <MovieListSmall />
                 </div>
                 <div>
                     <div className="mt-14 mb-11 pl-11 mt">
                         <h2 className="text-4xl text-white uppercase font-headings">Most popular</h2>
                     </div>
-                    <MovieListBig/>
+                    <MovieListBig />
                 </div>
                 {/* <div>
                     <div className="mt-14 mb-11 pl-11 mt">
