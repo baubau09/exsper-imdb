@@ -1,7 +1,8 @@
 import React from 'react'
 import ResultItem from '../../components/Search/ResultItem'
 import ResultList from '../../components/Search/ResultList'
-
+import Head from 'next/head';
+import Header from '../../components/Header';
 
 export async function getServerSideProps(context) {
     const movieName = context.params.name;
@@ -15,17 +16,37 @@ export async function getServerSideProps(context) {
     const data = await res.json()
 
     return {
-        props: {data, movieName}, // will be passed to the page component as props
+        props: { data, movieName }, // will be passed to the page component as props
     }
 }
 
-const SearchPage = ({data, movieName}) => {
+const SearchPage = ({ data, movieName }) => {
+    const pageTitle = "EXSPER - Search: " + movieName
     return (
         <>
-            {
-                (data && data.length > 0) ? <ResultList data={data}/>
-                : <p className="text-white">No results found</p>
-            }
+            <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content="Home to the movie experts" />
+                <link rel="icon" href="/logo.png" />
+            </Head>
+            <Header />
+
+            <div className="xs:mt-44 md:mt-32 flex justify-center">
+                {
+                    (data && data.length > 0)
+                        ?
+                        <>
+                            <div>
+                                <p className="text-xl font-medium text-white mb-5">
+                                    Search results for: {movieName}
+                                </p>
+                                <ResultList data={data} />
+                            </div>
+                        </>
+                        : <p className="text-white">No results found</p>
+                }
+            </div>
+
         </>
     )
 }
