@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import moment from 'moment'
 import Image from 'next/image'
 import Loader from '../Loader'
@@ -7,6 +7,7 @@ import Rating from '@mui/material/Rating';
 import { StarBorderRounded, StarRateRounded } from '@mui/icons-material'
 import { useUserData } from '../../hooks/useUserData'
 import { toast } from 'react-toastify';
+import { Amplify, Analytics } from "aws-amplify";
 
 const CastCrewOverview = ({ movieID }) => {
     const { data_castcrew, isLoading, isError } = useGetCredits(movieID)
@@ -81,7 +82,7 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
     const [ratingValue, setRatingValue] = useState(0);
     const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movies/rate"
     const { user, isLoading } = useUserData();
-    // const { user } = useContext(UserContext)
+
     const postRateMovie = (newRatingValue) => {
         const data = {
             movie_id: movieID,
@@ -99,19 +100,45 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
             .then((data) => {
                 toast.success("🌟 Thank you for your rating", {
                     position: "top-center",
-                    autoClose: 2000,
+                    autoClose: 500,
                     hideProgressBar: false,
                     closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
+                    pauseOnHover: false,
+                    draggable: false,
                     progress: undefined,
                 });
                 console.log('Success:', data);
             })
-            .catch((error) => {
-              console.error('Error:', error);
+            .catch((e) => {
+                const err = "" + e
+                toast.error(err, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                });
+              console.error('Error:', e);
             });
     }
+
+    useEffect(() => {
+        user && Analytics.record(
+            {
+                data: {
+                    EventType: "clicked",
+                    UserId: user['custom:USER_ID'],
+                    SessionId: "2",
+                    ItemId: movieID,
+                },
+                streamName: "movieRecEx", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
+            },
+            "AWSKinesis"
+        );
+    }, [user, movieID])
+    
       
 
     return (
