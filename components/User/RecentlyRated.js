@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RecentlyRated = () => {
-  return (
-    <div>RecentlyRated</div>
-  )
-}
+    return <div>RecentlyRated</div>;
+};
 
-export default RecentlyRated
+export default RecentlyRated;

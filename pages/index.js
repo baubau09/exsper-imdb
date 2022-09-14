@@ -1,14 +1,14 @@
 import Head from "next/head";
-import Header from "../components/Header"
-import dynamic from 'next/dynamic'
+import Header from "../components/Header";
+import dynamic from "next/dynamic";
 import MovieCardSmall from "../components/Home/MovieCardSmall";
 import MovieCardBig from "../components/Home/MovieCardBig";
 import MovieListSmall from "../components/Home/MovieListSmall";
 import MovieListBig from "../components/Home/MovieListBig";
 
-const HeaderDynamicCarousel = dynamic(() => import('../components/HeaderMovieCarousel'), {
+const HeaderDynamicCarousel = dynamic(() => import("../components/HeaderMovieCarousel"), {
     ssr: false,
-})
+});
 
 export default function Home() {
     return (

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ./**/*.{js,jsx,ts,tsx} !.next/**/*"
+    "format": "prettier --write ./**/**/*.{js,jsx,ts,tsx} !.next/**/*"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.154.0",

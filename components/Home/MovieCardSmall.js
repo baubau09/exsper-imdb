@@ -1,14 +1,17 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const MovieCardSmall = ({ id, title, rating, poster }) => {
-    const posterpath = "https://image.tmdb.org/t/p/original" + poster
-    const bg = 'linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(29, 29, 29, 0.8) 80.79%), url(' + posterpath + ')'
-    const mvLink = "/movie/" + id
-    const ratings = parseFloat(rating).toFixed(2)
+    const posterpath = "https://image.tmdb.org/t/p/original" + poster;
+    const bg = "linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(29, 29, 29, 0.8) 80.79%), url(" + posterpath + ")";
+    const mvLink = "/movie/" + id;
+    const ratings = parseFloat(rating).toFixed(2);
     return (
         <>
-            <div style={{ background: bg, backgroundSize: 'cover', backgroundPositionX: 'center', borderRadius: 20 }} className="text-white mx-auto overflow-hidden movie_card_small">
+            <div
+                style={{ background: bg, backgroundSize: "cover", backgroundPositionX: "center", borderRadius: 20 }}
+                className="text-white mx-auto overflow-hidden movie_card_small"
+            >
                 <Link href={mvLink}>
                     <a>
                         <div className="movie_card_small">
@@ -23,7 +26,7 @@ const MovieCardSmall = ({ id, title, rating, poster }) => {
                 </Link>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default MovieCardSmall
+export default MovieCardSmall;

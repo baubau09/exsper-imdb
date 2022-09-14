@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RecentlyView = () => {
-  return (
-    <div>RecentlyView</div>
-  )
-}
+    return <div>RecentlyView</div>;
+};
 
-export default RecentlyView
+export default RecentlyView;

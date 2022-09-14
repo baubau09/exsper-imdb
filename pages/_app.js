@@ -1,25 +1,24 @@
 import "../styles/globals.css";
-import "../styles/MovieCarousel.css"
-import "../styles/MovieDetails.css"
-import "../styles/HomeMovieLists.css"
-import "../styles/Search.css"
-import 'react-toastify/dist/ReactToastify.css';
+import "../styles/MovieCarousel.css";
+import "../styles/MovieDetails.css";
+import "../styles/HomeMovieLists.css";
+import "../styles/Search.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Amplify, Auth, Analytics, AWSKinesisProvider } from 'aws-amplify';
-import awsconfig from '../src/aws-exports';
-import { UserContext } from '../lib/context'
-import { useUserData } from '../hooks/useUserData'
-import { useRouter } from 'next/router'
-import { ToastContainer } from 'react-toastify';
-
+import { Amplify, Auth, Analytics, AWSKinesisProvider } from "aws-amplify";
+import awsconfig from "../src/aws-exports";
+import { UserContext } from "../lib/context";
+import { useUserData } from "../hooks/useUserData";
+import { useRouter } from "next/router";
+import { ToastContainer } from "react-toastify";
 
 Amplify.configure({ ...awsconfig, ssr: true });
 Analytics.addPluggable(new AWSKinesisProvider());
 
 function MyApp({ Component, pageProps }) {
-    const router = useRouter()
-    const { user } = useUserData()
+    const router = useRouter();
+    const { user } = useUserData();
 
     return (
         <UserContext.Provider value={user}>
@@ -36,8 +35,7 @@ function MyApp({ Component, pageProps }) {
             />
             <Component key={router.asPath} {...pageProps} />
         </UserContext.Provider>
-
-    )
+    );
 }
 
 export default MyApp;

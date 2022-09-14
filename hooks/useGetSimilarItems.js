@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const useGetSimilarItems = () => {
-  return (
-    <div>useGetSimilarItems</div>
-  )
-}
+    return <div>useGetSimilarItems</div>;
+};
 
-export default useGetSimilarItems
+export default useGetSimilarItems;

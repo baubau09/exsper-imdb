@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
 
@@ -17,13 +17,13 @@ export function useUserData() {
                 }
             } catch (error) {
                 //console.log(error)
-                setUser(null)
+                setUser(null);
             }
-            setLoading(false)
+            setLoading(false);
         };
 
         getProfile();
     }, [user]);
-    
+
     return { user, loading };
 }

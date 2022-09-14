@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const PopularCastsCard = () => {
-  return (
-    <div>PopularCastsCard</div>
-  )
-}
+    return <div>PopularCastsCard</div>;
+};
 
-export default PopularCastsCard
+export default PopularCastsCard;

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const TrailerPlayer = () => {
-  return (
-    <div>TrailerPlayer</div>
-  )
-}
+    return <div>TrailerPlayer</div>;
+};
 
-export default TrailerPlayer
+export default TrailerPlayer;

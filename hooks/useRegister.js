@@ -1,24 +1,24 @@
-import { useRouter } from 'next/router'
-import { Auth } from 'aws-amplify';
+import { useRouter } from "next/router";
+import { Auth } from "aws-amplify";
 import { useState } from "react";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function useRegister() {
-    const [loading, setLoading] = useState(false)
-	const router = useRouter()
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
-	const signup = async (values) => {
-		setLoading(true)
-		try {
+    const signup = async (values) => {
+        setLoading(true);
+        try {
             const { user } = await Auth.signUp({
                 username: values.email,
                 password: values.password,
                 attributes: {
-                    'custom:full_name': values.name,
-					// 'custom:USER_ID': "1"
-                }
+                    "custom:full_name": values.name,
+                    // 'custom:USER_ID': "1"
+                },
             });
-			toast.success("🦄 Signed up successfully! Please login", {
+            toast.success("🦄 Signed up successfully! Please login", {
                 position: "top-center",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -27,10 +27,10 @@ export default function useRegister() {
                 draggable: true,
                 progress: undefined,
             });
-			router.push("/login")
+            router.push("/login");
             console.log(user);
         } catch (error) {
-			const e = "" + error
+            const e = "" + error;
             toast.error(e, {
                 position: "top-center",
                 autoClose: 3000,
@@ -40,34 +40,34 @@ export default function useRegister() {
                 draggable: true,
                 progress: undefined,
             });
-            console.log('error signing up:', error);
+            console.log("error signing up:", error);
         }
-		setLoading(false)
-	}
+        setLoading(false);
+    };
 
-	// const confirm = (values, { setSubmitting }) => {
-	// 	fetch('/api/confirm', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json'
-	// 		},
-	// 		body: JSON.stringify(values)
-	// 	}).then(res => {
-	// 		if (!res.ok) throw res
-	// 		router.push({
-	// 			pathname: '/login',
-	// 			query: { confirmed: true }
-	// 		},
-	// 			"/login")
-	// 	}).catch(err => {
-	// 		console.error(err)
-	// 	}).finally(() => {
-	// 		setSubmitting(false)
-	// 	})
-	// }
+    // const confirm = (values, { setSubmitting }) => {
+    // 	fetch('/api/confirm', {
+    // 		method: 'POST',
+    // 		headers: {
+    // 			'Content-Type': 'application/json'
+    // 		},
+    // 		body: JSON.stringify(values)
+    // 	}).then(res => {
+    // 		if (!res.ok) throw res
+    // 		router.push({
+    // 			pathname: '/login',
+    // 			query: { confirmed: true }
+    // 		},
+    // 			"/login")
+    // 	}).catch(err => {
+    // 		console.error(err)
+    // 	}).finally(() => {
+    // 		setSubmitting(false)
+    // 	})
+    // }
 
-	return {
-		signup,
-		loading
-	}
+    return {
+        signup,
+        loading,
+    };
 }
