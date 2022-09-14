@@ -2,8 +2,6 @@ import React, { useContext } from 'react'
 import Head from 'next/head'
 import { useForm } from "react-hook-form";
 import useAuth from '../hooks/useAuth';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Loader from '../components/Loader';
 import { useRouter } from 'next/router';
@@ -15,17 +13,6 @@ const LoginPage = () => {
 
     return (
         <>
-            <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
             <Head>
                 <title>EXSPER - Login</title>
                 <meta name="description" content="Home to the movie experts" />

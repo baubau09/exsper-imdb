@@ -5,9 +5,8 @@ import Loader from '../Loader'
 import useGetCredits from '../../hooks/useGetCredits'
 import Rating from '@mui/material/Rating';
 import { StarBorderRounded, StarRateRounded } from '@mui/icons-material'
-import { UserContext } from '../../lib/context'
 import { useUserData } from '../../hooks/useUserData'
-import AuthCheck from '../AuthCheck'
+import { toast } from 'react-toastify';
 
 const CastCrewOverview = ({ movieID }) => {
     const { data_castcrew, isLoading, isError } = useGetCredits(movieID)
@@ -98,7 +97,16 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log('Success:', data);
+                toast.success("🌟 Thank you for your rating", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                console.log('Success:', data);
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -146,25 +154,27 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                         <p className="text-lg md:text-xl font-bold mb-1">
                             Rate this movie
                         </p>
+                        <div className="flex justify-center">
                         {
                             (user && !isLoading) 
                             ?
                             <>
-                            <Rating
-                            name="simple-controlled"
-                            value={ratingValue}
-                            onChange={(event, newValue) => {
-                                setRatingValue(newValue);
-                                postRateMovie(newValue);
-                            }}
-                            precision={0.5}
-                            icon={<StarRateRounded />}
-                            emptyIcon={<StarBorderRounded className="text-gray-400" />}
-                        />
+                                <Rating
+                                name="simple-controlled"
+                                value={ratingValue}
+                                onChange={(event, newValue) => {
+                                    setRatingValue(newValue);
+                                    postRateMovie(newValue);
+                                }}
+                                precision={0.5}
+                                icon={<StarRateRounded />}
+                                emptyIcon={<StarBorderRounded className="text-gray-400" />}
+                            />
                             </> 
                             :
                             <p>Please login to rate this movie</p>
                         }
+                        </div>
                     </div>
                 </div>
             </div>
