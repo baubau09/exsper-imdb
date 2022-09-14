@@ -53,6 +53,7 @@ const MoviePage = ({data, movieID}) => {
             release_date={data.release_date} 
             runtime={data.runtime} 
             movieID={movieID}
+            rating={parseFloat(data.rating).toFixed(1)}
             />
             {/** 
              * Top Billed Cast

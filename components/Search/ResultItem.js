@@ -14,10 +14,13 @@ const ResultItem = ({ poster, id, title }) => {
                         <div className="movie_search_card my-auto">
                             <img src={posterpath}
                                 alt={title}
-                                className="mx-auto mt-3 movie_search_img" />
-                            <h4 className="text-white text-base mx-auto mt-2 w-fit h-fit text-truncate movie_search_title">
+                                className="mx-auto mt-1 md:mt-3 movie_search_img" />
+                            <h4 className="text-white text-xs md:text-base mx-auto mt-1 md:mt-2 w-fit h-fit text-truncate movie_search_title">
                                 {title}
                             </h4>
+                            <p className="text-gray-300 text-xs md:text-base mx-auto w-fit h-fit movie_search_title">
+                                2020
+                            </p>
                         </div>
                     </div>
                 </a>

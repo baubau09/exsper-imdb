@@ -37,7 +37,7 @@ const SearchPage = ({ data, movieName }) => {
                         ?
                         <>
                             <div>
-                                <p className="text-xl font-medium text-white mb-5">
+                                <p className="text-2xl font-bold text-white mb-5">
                                     Search results for: {movieName}
                                 </p>
                                 <ResultList data={data} />

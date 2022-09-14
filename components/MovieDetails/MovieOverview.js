@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import moment from 'moment'
 import Image from 'next/image'
 import Loader from '../Loader'
 import useGetCredits from '../../hooks/useGetCredits'
+import Rating from '@mui/material/Rating';
+import { StarBorderRounded, StarRateRounded } from '@mui/icons-material'
+import { UserContext } from '../../lib/context'
+import { useUserData } from '../../hooks/useUserData'
+import AuthCheck from '../AuthCheck'
 
-const CastCrewOverview = ({movieID}) => {
+const CastCrewOverview = ({ movieID }) => {
     const { data_castcrew, isLoading, isError } = useGetCredits(movieID)
     const crewArr = data_castcrew && data_castcrew.crew
     const castArr = data_castcrew && data_castcrew.cast
@@ -73,7 +78,34 @@ const CastCrewOverview = ({movieID}) => {
     )
 }
 
-const MovieOverview = ({poster, tagline, overview, release_date, runtime, movieID}) => {
+const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movieID, rating }) => {
+    const [ratingValue, setRatingValue] = useState(0);
+    const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movies/rate"
+    const { user, isLoading } = useUserData();
+    // const { user } = useContext(UserContext)
+    const postRateMovie = (newRatingValue) => {
+        const data = {
+            movie_id: movieID,
+            user_id: user['custom:USER_ID'],
+            rating: newRatingValue
+        }
+        fetch(apiurl, {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+    }
+      
+
     return (
         <>
             <div className="text-white mt-36 md:mt-48 md:columns-2 mx-auto container w-10/12">
@@ -84,29 +116,56 @@ const MovieOverview = ({poster, tagline, overview, release_date, runtime, movieI
                         width={480}
                         height={720}
                         objectFit="cover"
-                        objectPosition="center"/>
+                        objectPosition="center" />
                     {/* <img src={poster} className="poster"/> */}
                 </div>
                 <div>
-                    <p className="text-lg md:text-xl font-bold mb-5">
-                        {tagline}
-                    </p>
-                    <p className="text-base md:text-lg mb-5 text-gray-200">
-                        {overview}
-                    </p>
-                    <p className="text-sm mb-1 text-gray-400">
-                        Release Date
-                    </p>
-                    <p className="text-base md:text-lg mb-5 text-gray-200">
-                        {moment(release_date).format("MMMM Do YYYY")}
-                    </p>
-                    <p className="text-sm mb-1 text-gray-400">
-                        Duration
-                    </p>
-                    <p className="text-base md:text-lg mb-5 text-gray-200">
-                        {runtime} min
-                    </p>
-                    <CastCrewOverview movieID={movieID}></CastCrewOverview>
+                    <div>
+                        <p className="text-lg md:text-xl font-bold mb-5">
+                            {tagline}
+                        </p>
+                        <p className="text-base md:text-lg mb-5 text-gray-200">
+                            {overview}
+                        </p>
+                        <p className="text-sm mb-1 text-gray-400">
+                            Release Date
+                        </p>
+                        <p className="text-base md:text-lg mb-5 text-gray-200">
+                            {moment(release_date).format("MMMM Do YYYY")}
+                        </p>
+                        <p className="text-sm mb-1 text-gray-400">
+                            Duration
+                        </p>
+                        <p className="text-base md:text-lg mb-5 text-gray-200">
+                            {runtime} min
+                        </p>
+                        <CastCrewOverview movieID={movieID}></CastCrewOverview>
+                    </div>
+                    <hr className="mt-10 border-gray-600" />
+                    <div className="mt-5 rounded-2xl bg-gray-600 bg-opacity-50 w-fit px-5 py-5 backdrop-blur-xl">
+                        <p className="text-lg md:text-xl font-bold mb-1">
+                            Rate this movie
+                        </p>
+                        {
+                            (user && !isLoading) 
+                            ?
+                            <>
+                            <Rating
+                            name="simple-controlled"
+                            value={ratingValue}
+                            onChange={(event, newValue) => {
+                                setRatingValue(newValue);
+                                postRateMovie(newValue);
+                            }}
+                            precision={0.5}
+                            icon={<StarRateRounded />}
+                            emptyIcon={<StarBorderRounded className="text-gray-400" />}
+                        />
+                            </> 
+                            :
+                            <p>Please login to rate this movie</p>
+                        }
+                    </div>
                 </div>
             </div>
         </>
