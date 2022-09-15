@@ -35,14 +35,25 @@ const Header = () => {
 
                         <div className="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
                             {user ? (
-                                <button
+                                <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
+                                    <button
                                     className="rounded-xl bg-primary-400 hover:bg-primary-500
-                                w-fit flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium text-white md:py-3 md:px-6 mx-3 transition-colors"
-                                    type="button"
-                                    onClick={() => logout()}
-                                >
-                                    Sign Out
-                                </button>
+                                    w-fit flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium text-white md:py-3 md:px-6 mx-3 transition-colors"
+                                        type="button"
+                                        onClick={() => router.push("/user/dashboard")}
+                                    >
+                                        Dashboard
+                                    </button>
+                                    <button
+                                    className="rounded-xl bg-white hover:bg-error-500
+                                    w-fit flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium text-error-500 hover:text-white md:py-3 md:px-6 mx-3 transition-colors"
+                                        type="button"
+                                        onClick={() => logout()}
+                                    >
+                                        Sign Out
+                                    </button>
+                                </ul>
+                                
                             ) : loading ? (
                                 <div></div>
                             ) : (

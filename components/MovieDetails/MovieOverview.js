@@ -112,21 +112,19 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
             });
     };
 
-    useEffect(() => {
-        user &&
-            Analytics.record(
-                {
-                    data: {
-                        EventType: "clicked",
-                        UserId: user["custom:USER_ID"],
-                        SessionId: "2",
-                        ItemId: movieID,
-                    },
-                    streamName: "movieRecEx", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
-                },
-                "AWSKinesis"
-            );
-    }, [user, movieID]);
+    Analytics.record(
+        {
+            data: {
+                EventType: "clicked",
+                UserId: user["custom:USER_ID"],
+                SessionId: "2",
+                ItemId: movieID,
+            },
+            streamName: "movieRecEx", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
+        },
+        "AWSKinesis"
+    );
+    
 
     return (
         <>
@@ -142,7 +140,6 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                         objectFit="cover"
                         objectPosition="center"
                     />
-                    {/* <img src={poster} className="poster"/> */}
                 </div>
                 <div>
                     <div>
