@@ -8,9 +8,7 @@ const ResultList = ({ data }) => {
                 {data &&
                     data.map((e, i) => {
                         return (
-                            <>
-                                <ResultItem key={i} id={e.id} title={e.title} poster={e.poster_path} />
-                            </>
+                            <ResultItem key={i} id={e.id} title={e.title} poster={e.poster_path} release_date={e.release_date} />
                         );
                     })}
             </div>

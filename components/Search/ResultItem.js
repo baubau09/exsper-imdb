@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
-const ResultItem = ({ poster, id, title }) => {
+import moment from "moment";
+const ResultItem = ({ poster, id, title, release_date }) => {
     const posterpath = "https://image.tmdb.org/t/p/original/" + poster;
     const mvLink = "/movie/" + id;
 
@@ -17,7 +17,7 @@ const ResultItem = ({ poster, id, title }) => {
                                 {title}
                             </h4>
                             <p className="text-gray-300 text-xs md:text-base mx-auto w-fit h-fit movie_search_title">
-                                2020
+                                {moment(release_date).format("YYYY")}
                             </p>
                         </div>
                     </div>
