@@ -115,13 +115,14 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
     useEffect(() => {
         const runAnalytics = async () => {
             const currentUser = await Auth.currentAuthenticatedUser();
+            console.log(currentUser)
             if (currentUser) {
                 Analytics.record(
                     {
                         data: {
                             EventType: "clicked",
                             UserId: currentUser.attributes["custom:USER_ID"],
-                            SessionId: "2",
+                            SessionId: "",
                             ItemId: movieID,
                         },
                         streamName: "amplifyAnalyticsExsper-staging", 
