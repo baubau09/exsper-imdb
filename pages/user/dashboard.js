@@ -4,8 +4,9 @@ import Head from "next/head";
 import Header from "../../components/Header";
 import GeneralInfo from "../../components/User/GeneralInfo";
 import { useUserData } from "../../hooks/useUserData";
-import useGetUserInfo from "../../hooks/useGetUserInfo";
 import Loader from "../../components/Loader";
+import RecentlyList from "../../components/User/RecentlyList";
+import Footer from "../../components/Footer";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -38,7 +39,23 @@ const UserDashboard = () => {
                     gender={data.GENDER}
                     email={data.EMAIL}/>
                 }
+                <div className="w-2/3 mx-auto">
+                    <h2 className="text-3xl text-white uppercase font-headings my-8">Recently viewed</h2>
+                    <div className="scroller_wrap should_fade is_fading">
+                        <RecentlyList items={viewedItems}/>
+                    </div>
+                </div>
+                
+                <div className="w-2/3 mx-auto">
+                    <h2 className="text-3xl text-white uppercase font-headings my-8">Recently rated</h2>
+                    <div className="scroller_wrap should_fade is_fading">
+                        <RecentlyList items={ratedItems}/>
+                    </div>
+                </div>
+                
             </div>
+
+            <Footer/>
         </>
     )
 };

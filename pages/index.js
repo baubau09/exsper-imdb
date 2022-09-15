@@ -5,6 +5,8 @@ import MovieCardSmall from "../components/Home/MovieCardSmall";
 import MovieCardBig from "../components/Home/MovieCardBig";
 import MovieListSmall from "../components/Home/MovieListSmall";
 import MovieListBig from "../components/Home/MovieListBig";
+import TopPicksForYou from "../components/Home/TopPicksForYou";
+import Footer from "../components/Footer";
 
 const HeaderDynamicCarousel = dynamic(() => import("../components/HeaderMovieCarousel"), {
     ssr: false,
@@ -43,13 +45,16 @@ export default function Home() {
                     <div className="mt-14 mb-11 pl-11 mt">
                         <h2 className="text-4xl text-white uppercase font-headings">Top picks for you</h2>
                     </div>
+                    <TopPicksForYou/>
                 </div>
-                <div>
+                {/* <div>
                     <div className="mt-14 mb-11 pl-11 mt">
                         <h2 className="text-4xl text-white uppercase font-headings">Popular casts</h2>
                     </div>
-                </div>
+                </div> */}
             </div>
+
+            <Footer/>
         </>
     );
 }

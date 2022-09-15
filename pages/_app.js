@@ -3,6 +3,7 @@ import "../styles/MovieCarousel.css";
 import "../styles/MovieDetails.css";
 import "../styles/HomeMovieLists.css";
 import "../styles/Search.css";
+import "../styles/UserDashboard.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import "bootstrap-icons/font/bootstrap-icons.css";

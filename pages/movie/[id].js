@@ -6,6 +6,7 @@ import moment from "moment";
 import MovieHeader from "../../components/MovieDetails/MovieHeader";
 import MovieOverview from "../../components/MovieDetails/MovieOverview";
 import useSWR from "swr";
+import Footer from "../../components/Footer";
 
 export async function getServerSideProps(context) {
     const movieID = context.params.id;
@@ -63,6 +64,8 @@ const MoviePage = ({ data, movieID }) => {
             {/**
              * Top Billed Cast
              */}
+
+            <Footer/>
         </>
     );
 };

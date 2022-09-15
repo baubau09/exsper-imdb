@@ -3,6 +3,7 @@ import ResultItem from "../../components/Search/ResultItem";
 import ResultList from "../../components/Search/ResultList";
 import Head from "next/head";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export async function getServerSideProps(context) {
     const movieName = context.params.name;
@@ -40,6 +41,8 @@ const SearchPage = ({ data, movieName }) => {
                     <p className="text-white">No results found</p>
                 )}
             </div>
+
+            <Footer/>
         </>
     );
 };
