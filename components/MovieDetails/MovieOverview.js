@@ -245,7 +245,7 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                     </Button>
                 </DialogActions>
             </BootstrapDialog>
-            <div className="text-white mt-36 md:mt-48 md:columns-2 mx-auto container w-10/12">
+            <div className="text-white mt-36 md:mt-48 md:grid md:grid-cols-2 mx-auto container w-10/12">
                 <div className="hidden md:block">
                     <Image
                         src={poster}
