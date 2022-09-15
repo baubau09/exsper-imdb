@@ -45,7 +45,7 @@ export default function Home() {
                     <div className="mt-14 mb-11 pl-11 mt">
                         <h2 className="text-4xl text-white uppercase font-headings">Top picks for you</h2>
                     </div>
-                    <TopPicksForYou/>
+                    <TopPicksForYou />
                 </div>
                 {/* <div>
                     <div className="mt-14 mb-11 pl-11 mt">
@@ -54,7 +54,7 @@ export default function Home() {
                 </div> */}
             </div>
 
-            <Footer/>
+            <Footer />
         </>
     );
 }

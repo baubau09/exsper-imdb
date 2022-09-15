@@ -1,23 +1,28 @@
-import React from 'react'
-import useGetPersonalize from '../../hooks/useGetPersonalize'
-import TopPickItem from './TopPickItem'
+import React from "react";
+import useGetPersonalize from "../../hooks/useGetPersonalize";
+import TopPickItem from "./TopPickItem";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Loader from '../Loader';
+import Loader from "../Loader";
 import useSWRImmutable from "swr/immutable";
 import { useUserData } from "../../hooks/useUserData";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const TopPicksForYou = () => {
-    const {user, isLoading} = useUserData()
-    const userid = user && user["custom:USER_ID"]
-    const { data: topPicksData, error: topPicksError } = useSWRImmutable(user ? `https://z1hi6ssas5.execute-api.ap-southeast-1.amazonaws.com/getPersonalize?userId=${userid}&numResults=5` : null, fetcher)
+    const { user, isLoading } = useUserData();
+    const userid = user && user["custom:USER_ID"];
+    const { data: topPicksData, error: topPicksError } = useSWRImmutable(
+        user
+            ? `https://z1hi6ssas5.execute-api.ap-southeast-1.amazonaws.com/getPersonalize?userId=${userid}&numResults=5`
+            : null,
+        fetcher
+    );
 
     return (
         <>
-        <Loader show={(!topPicksData && !topPicksError)}/>
-        <div className="hidden lg:block">
+            <Loader show={!topPicksData && !topPicksError} />
+            <div className="hidden lg:block">
                 <Swiper
                     // install Swiper modules
                     // modules={[Navigation, Pagination, Autoplay]}
@@ -75,7 +80,7 @@ const TopPicksForYou = () => {
                 </Swiper>
             </div>
         </>
-    )
+    );
 
     // return (
     //     <div className="scroller_wrap should_fade is_fading">
@@ -91,8 +96,8 @@ const TopPicksForYou = () => {
     //         }
     //         </div>
     //     </div>
-        
-    // )
-}
 
-export default TopPicksForYou
+    // )
+};
+
+export default TopPicksForYou;

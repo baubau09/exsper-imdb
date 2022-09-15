@@ -42,7 +42,7 @@ const SearchPage = ({ data, movieName }) => {
                 )}
             </div>
 
-            <Footer/>
+            <Footer />
         </>
     );
 };

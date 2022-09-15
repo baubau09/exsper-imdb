@@ -1,14 +1,14 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-import useGetSingleMovie from '../../hooks/useGetSingleMovie'
-import Loader from '../Loader'
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import useGetSingleMovie from "../../hooks/useGetSingleMovie";
+import Loader from "../Loader";
 
 const TopPickItem = ({ movieID }) => {
     const imgurl = "https://image.tmdb.org/t/p/original";
-    const { data, isLoading, isError } = useGetSingleMovie(movieID)
-    const poster = data && imgurl + data.poster_path
-    const title = data && data.title
+    const { data, isLoading, isError } = useGetSingleMovie(movieID);
+    const poster = data && imgurl + data.poster_path;
+    const title = data && data.title;
     const bg = "linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(29, 29, 29, 0.8) 80.79%), url(" + poster + ")";
     const mvLink = "/movie/" + movieID;
     const ratings = data && parseFloat(data.rating).toFixed(2);
@@ -16,7 +16,13 @@ const TopPickItem = ({ movieID }) => {
     return (
         <>
             <div
-                style={{ background: bg, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPositionX: "center", borderRadius: 20 }}
+                style={{
+                    background: bg,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPositionX: "center",
+                    borderRadius: 20,
+                }}
                 className="text-white mx-5 mb-10 overflow-hidden movie_card_small flex-none"
             >
                 <Link href={mvLink}>
@@ -33,7 +39,7 @@ const TopPickItem = ({ movieID }) => {
                 </Link>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default TopPickItem
+export default TopPickItem;

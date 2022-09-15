@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
         props: { data, movieID }, // will be passed to the page component as props
     };
 }
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const MoviePage = ({ data, movieID }) => {
     const imgurl = "https://image.tmdb.org/t/p/original";
@@ -30,7 +30,7 @@ const MoviePage = ({ data, movieID }) => {
     const year = moment(data.release_date).format("YYYY");
     const genres = data.genres;
     const pageTitle = data.title + " - EXSPER";
-    
+
     return (
         <>
             <Head>
@@ -65,7 +65,7 @@ const MoviePage = ({ data, movieID }) => {
              * Top Billed Cast
              */}
 
-            <Footer/>
+            <Footer />
         </>
     );
 };

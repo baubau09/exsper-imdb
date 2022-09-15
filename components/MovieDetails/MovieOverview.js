@@ -66,13 +66,12 @@ const CastCrewOverview = ({ movieID }) => {
         </>
     );
 };
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movieID }) => {
     const { user, isLoading } = useUserData();
-    const [currentRating, setCurrentRating] = useState(0)
+    const [currentRating, setCurrentRating] = useState(0);
     const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movies/rate";
-    
 
     const postRateMovie = (newRatingValue) => {
         const data = {
@@ -121,12 +120,15 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
             const currentUser = await Auth.currentAuthenticatedUser();
 
             // Get the latest rating of current user for the movie
-            const res = await fetch(`https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/ratings?user_id=${currentUser.attributes["custom:USER_ID"]}&movie_id=${movieID}`,{
-                method: 'GET'
-            });
+            const res = await fetch(
+                `https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/ratings?user_id=${currentUser.attributes["custom:USER_ID"]}&movie_id=${movieID}`,
+                {
+                    method: "GET",
+                }
+            );
             const currentRatings = await res.json();
             if (currentRatings && currentRatings.length > 0) {
-                setCurrentRating(currentRatings[0].rating)
+                setCurrentRating(currentRatings[0].rating);
             }
 
             // Run kinesis analytics
@@ -139,18 +141,15 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                             SessionId: "",
                             ItemId: movieID,
                         },
-                        streamName: "amplifyAnalyticsExsper-staging", 
+                        streamName: "amplifyAnalyticsExsper-staging",
                     },
                     "AWSKinesis"
                 );
             }
-        }
+        };
 
-        runAnalytics()
-    }, [])
-    
-        
-    
+        runAnalytics();
+    }, []);
 
     return (
         <>
@@ -185,25 +184,23 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                         <div className="flex justify-center">
                             {isLoading ? (
                                 <>
-                                <Loader show={isLoading}/>
+                                    <Loader show={isLoading} />
                                 </>
-                            ) 
-                            : (!isLoading && user) 
-                                    ? <>
-                                        <Rating
-                                            name="simple-controlled"
-                                            value={currentRating}
-                                            onChange={(event, newValue) => {
-                                                setCurrentRating(newValue)
-                                                postRateMovie(newValue);
-                                            }}
-                                            precision={0.5}
-                                            icon={<StarRateRounded />}
-                                            emptyIcon={<StarBorderRounded className="text-gray-400" />}
-                                        />
-                                    </>
-                            :
-                            (
+                            ) : !isLoading && user ? (
+                                <>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={currentRating}
+                                        onChange={(event, newValue) => {
+                                            setCurrentRating(newValue);
+                                            postRateMovie(newValue);
+                                        }}
+                                        precision={0.5}
+                                        icon={<StarRateRounded />}
+                                        emptyIcon={<StarBorderRounded className="text-gray-400" />}
+                                    />
+                                </>
+                            ) : (
                                 <p>Please login to rate this movie</p>
                             )}
                         </div>

@@ -37,7 +37,7 @@ const Header = () => {
                             {user ? (
                                 <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
                                     <button
-                                    className="rounded-xl bg-primary-400 hover:bg-primary-500
+                                        className="rounded-xl bg-primary-400 hover:bg-primary-500
                                     w-fit flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium text-white md:py-3 md:px-6 mx-3 transition-colors"
                                         type="button"
                                         onClick={() => router.push("/user/dashboard")}
@@ -45,7 +45,7 @@ const Header = () => {
                                         Dashboard
                                     </button>
                                     <button
-                                    className="rounded-xl bg-white hover:bg-error-500
+                                        className="rounded-xl bg-white hover:bg-error-500
                                     w-fit flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium text-error-500 hover:text-white md:py-3 md:px-6 mx-3 transition-colors"
                                         type="button"
                                         onClick={() => logout()}
@@ -53,7 +53,6 @@ const Header = () => {
                                         Sign Out
                                     </button>
                                 </ul>
-                                
                             ) : loading ? (
                                 <div></div>
                             ) : (
