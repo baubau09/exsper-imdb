@@ -5,6 +5,7 @@ import Head from "next/head";
 import moment from "moment";
 import MovieHeader from "../../components/MovieDetails/MovieHeader";
 import MovieOverview from "../../components/MovieDetails/MovieOverview";
+import useSWR from "swr";
 
 export async function getServerSideProps(context) {
     const movieID = context.params.id;
@@ -18,6 +19,7 @@ export async function getServerSideProps(context) {
         props: { data, movieID }, // will be passed to the page component as props
     };
 }
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const MoviePage = ({ data, movieID }) => {
     const imgurl = "https://image.tmdb.org/t/p/original";
@@ -27,7 +29,7 @@ const MoviePage = ({ data, movieID }) => {
     const year = moment(data.release_date).format("YYYY");
     const genres = data.genres;
     const pageTitle = data.title + " - EXSPER";
-
+    
     return (
         <>
             <Head>
@@ -57,7 +59,6 @@ const MoviePage = ({ data, movieID }) => {
                 release_date={data.release_date}
                 runtime={data.runtime}
                 movieID={movieID}
-                rating={parseFloat(data.rating).toFixed(1)}
             />
             {/**
              * Top Billed Cast

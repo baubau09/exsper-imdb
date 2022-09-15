@@ -8,6 +8,7 @@ import { StarBorderRounded, StarRateRounded } from "@mui/icons-material";
 import { useUserData } from "../../hooks/useUserData";
 import { toast } from "react-toastify";
 import { Auth, Amplify, Analytics } from "aws-amplify";
+import useSWR from "swr";
 
 const CastCrewOverview = ({ movieID }) => {
     const { data_castcrew, isLoading, isError } = useGetCredits(movieID);
@@ -65,11 +66,14 @@ const CastCrewOverview = ({ movieID }) => {
         </>
     );
 };
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movieID, rating }) => {
-    const [ratingValue, setRatingValue] = useState(0);
-    const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movies/rate";
+const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movieID }) => {
     const { user, isLoading } = useUserData();
+    const [currentRating, setCurrentRating] = useState(0)
+    const [ratingValue, setRatingValue] = useState(currentRating);
+    const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movies/rate";
+    
 
     const postRateMovie = (newRatingValue) => {
         const data = {
@@ -114,7 +118,17 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
 
     useEffect(() => {
         const runAnalytics = async () => {
+            
             const currentUser = await Auth.currentAuthenticatedUser();
+            const res = await fetch(`https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/ratings?user_id=${currentUser.attributes["custom:USER_ID"]}&movie_id=${movieID}`,{
+                method: 'GET'
+            });
+            const currentRatings = await res.json();
+            // console.log(currentRatings)
+            if (currentRatings && currentRatings.length > 0) {
+                setCurrentRating(currentRatings[0].rating)
+            }
+
             console.log(currentUser)
             if (currentUser) {
                 Analytics.record(
@@ -130,8 +144,8 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                     "AWSKinesis"
                 );
             }
-            
         }
+
         runAnalytics()
     }, [])
     
@@ -169,21 +183,28 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                     <div className="mt-5 rounded-2xl bg-gray-600 bg-opacity-50 w-fit px-5 py-5 backdrop-blur-xl">
                         <p className="text-lg md:text-xl font-bold mb-1">Rate this movie</p>
                         <div className="flex justify-center">
-                            {user && !isLoading ? (
+                            {isLoading ? (
                                 <>
-                                    <Rating
-                                        name="simple-controlled"
-                                        value={ratingValue}
-                                        onChange={(event, newValue) => {
-                                            setRatingValue(newValue);
-                                            postRateMovie(newValue);
-                                        }}
-                                        precision={0.5}
-                                        icon={<StarRateRounded />}
-                                        emptyIcon={<StarBorderRounded className="text-gray-400" />}
-                                    />
+                                <Loader show={isLoading}/>
                                 </>
-                            ) : (
+                            ) 
+                            : (!isLoading && user) 
+                                    ? <>
+                                        <Rating
+                                            name="simple-controlled"
+                                            value={currentRating}
+                                            onChange={(event, newValue) => {
+                                                setRatingValue(newValue);
+                                                setCurrentRating(newValue)
+                                                postRateMovie(newValue);
+                                            }}
+                                            precision={0.5}
+                                            icon={<StarRateRounded />}
+                                            emptyIcon={<StarBorderRounded className="text-gray-400" />}
+                                        />
+                                    </>
+                            :
+                            (
                                 <p>Please login to rate this movie</p>
                             )}
                         </div>
