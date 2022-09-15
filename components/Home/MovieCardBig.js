@@ -3,14 +3,14 @@ import Link from "next/link";
 
 const MovieCardBig = ({ id, title, rating, poster }) => {
     const posterpath = "https://image.tmdb.org/t/p/original" + poster;
-    const bg = "linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(29, 29, 29, 0.8) 80.79%), url(" + posterpath + ")";
+    const bg = "linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(29, 29, 29, 0.8) 80.79%), url(" + posterpath + ") no-repeat center / cover";
     const mvLink = "/movie/" + id;
     const ratings = parseFloat(rating).toFixed(2);
 
     return (
         <>
             <div
-                style={{ background: bg, backgroundSize: "cover", backgroundPositionX: "center" }}
+                style={{ background: bg }}
                 className="text-white movie_card_big mx-auto overflow-hidden"
             >
                 <Link href={mvLink}>
