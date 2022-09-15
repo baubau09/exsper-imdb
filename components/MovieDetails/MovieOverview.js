@@ -71,7 +71,6 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movieID }) => {
     const { user, isLoading } = useUserData();
     const [currentRating, setCurrentRating] = useState(0)
-    const [ratingValue, setRatingValue] = useState(currentRating);
     const apiurl = "https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/movies/rate";
     
 
@@ -118,18 +117,19 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
 
     useEffect(() => {
         const runAnalytics = async () => {
-            
+            // Get current user
             const currentUser = await Auth.currentAuthenticatedUser();
+
+            // Get the latest rating of current user for the movie
             const res = await fetch(`https://l9r8bafvh6.execute-api.ap-southeast-1.amazonaws.com/test/ratings?user_id=${currentUser.attributes["custom:USER_ID"]}&movie_id=${movieID}`,{
                 method: 'GET'
             });
             const currentRatings = await res.json();
-            // console.log(currentRatings)
             if (currentRatings && currentRatings.length > 0) {
                 setCurrentRating(currentRatings[0].rating)
             }
 
-            console.log(currentUser)
+            // Run kinesis analytics
             if (currentUser) {
                 Analytics.record(
                     {
@@ -194,7 +194,6 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
                                             name="simple-controlled"
                                             value={currentRating}
                                             onChange={(event, newValue) => {
-                                                setRatingValue(newValue);
                                                 setCurrentRating(newValue)
                                                 postRateMovie(newValue);
                                             }}
