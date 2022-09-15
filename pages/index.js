@@ -42,9 +42,6 @@ export default function Home() {
                     </div>
                 </div> */}
                 <div>
-                    <div className="mt-14 mb-11 pl-11 mt">
-                        <h2 className="text-4xl text-white uppercase font-headings">Top picks for you</h2>
-                    </div>
                     <TopPicksForYou />
                 </div>
                 {/* <div>

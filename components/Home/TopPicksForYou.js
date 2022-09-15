@@ -21,64 +21,74 @@ const TopPicksForYou = () => {
 
     return (
         <>
-            <Loader show={!topPicksData && !topPicksError} />
-            <div className="hidden lg:block">
-                <Swiper
-                    // install Swiper modules
-                    // modules={[Navigation, Pagination, Autoplay]}
-                    modules={[Navigation, Pagination]}
-                    slidesPerView={4}
-                    spaceBetween={24}
-                    // autoplay={{
-                    //     enabled: true,
-                    //     delay: 5000,
-                    //     disableOnInteraction: true,
-                    // }}
-                    pagination={{
-                        enabled: true,
-                        clickable: true,
-                    }}
-                    navigation={{
-                        enabled: true,
-                    }}
-                    // observer={true}
-                >
-                    {topPicksData &&
-                        topPicksData.map((e, i) => {
-                            return (
-                                <SwiperSlide key={i}>
-                                    <TopPickItem movieID={e} />
-                                </SwiperSlide>
-                            );
-                        })}
-                </Swiper>
-            </div>
-            <div className="block lg:hidden">
-                <Swiper
-                    // install Swiper modules
-                    // modules={[Navigation, Autoplay]}
-                    modules={[Navigation]}
-                    slidesPerView={2}
-                    spaceBetween={12}
-                    navigation={{
-                        enabled: true,
-                    }}
-                    // autoplay={{
-                    //     enabled: true,
-                    //     delay: 3000,
-                    //     disableOnInteraction: true,
-                    // }}
-                >
-                    {topPicksData &&
-                        topPicksData.map((e, i) => {
-                            return (
-                                <SwiperSlide key={i}>
-                                    <TopPickItem movieID={e} />
-                                </SwiperSlide>
-                            );
-                        })}
-                </Swiper>
-            </div>
+            <Loader show={user && !topPicksData && !topPicksError} />
+            {
+                topPicksData && !topPicksError
+                    ?
+                    <>
+                        <div className="mt-14 mb-11 pl-11 mt">
+                            <h2 className="text-4xl text-white uppercase font-headings">Top picks for you</h2>
+                        </div>
+                        <div className="hidden lg:block">
+                            <Swiper
+                                // install Swiper modules
+                                // modules={[Navigation, Pagination, Autoplay]}
+                                modules={[Navigation, Pagination]}
+                                slidesPerView={4}
+                                spaceBetween={24}
+                                // autoplay={{
+                                //     enabled: true,
+                                //     delay: 5000,
+                                //     disableOnInteraction: true,
+                                // }}
+                                pagination={{
+                                    enabled: true,
+                                    clickable: true,
+                                }}
+                                navigation={{
+                                    enabled: true,
+                                }}
+                            // observer={true}
+                            >
+                                {topPicksData &&
+                                    topPicksData.map((e, i) => {
+                                        return (
+                                            <SwiperSlide key={i}>
+                                                <TopPickItem movieID={e} />
+                                            </SwiperSlide>
+                                        );
+                                    })}
+                            </Swiper>
+                        </div>
+                        <div className="block lg:hidden">
+                            <Swiper
+                                // install Swiper modules
+                                // modules={[Navigation, Autoplay]}
+                                modules={[Navigation]}
+                                slidesPerView={2}
+                                spaceBetween={12}
+                                navigation={{
+                                    enabled: true,
+                                }}
+                            // autoplay={{
+                            //     enabled: true,
+                            //     delay: 3000,
+                            //     disableOnInteraction: true,
+                            // }}
+                            >
+                                {topPicksData &&
+                                    topPicksData.map((e, i) => {
+                                        return (
+                                            <SwiperSlide key={i}>
+                                                <TopPickItem movieID={e} />
+                                            </SwiperSlide>
+                                        );
+                                    })}
+                            </Swiper>
+                        </div>
+                    </>
+                    : null
+            }
         </>
     );
 
