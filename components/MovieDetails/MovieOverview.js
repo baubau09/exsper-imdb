@@ -7,7 +7,7 @@ import Rating from "@mui/material/Rating";
 import { StarBorderRounded, StarRateRounded } from "@mui/icons-material";
 import { useUserData } from "../../hooks/useUserData";
 import { toast } from "react-toastify";
-import { Amplify, Analytics } from "aws-amplify";
+import { Auth, Amplify, Analytics } from "aws-amplify";
 
 const CastCrewOverview = ({ movieID }) => {
     const { data_castcrew, isLoading, isError } = useGetCredits(movieID);
@@ -112,18 +112,29 @@ const MovieOverview = ({ poster, tagline, overview, release_date, runtime, movie
             });
     };
 
-    Analytics.record(
-        {
-            data: {
-                EventType: "clicked",
-                UserId: user["custom:USER_ID"],
-                SessionId: "2",
-                ItemId: movieID,
-            },
-            streamName: "movieRecEx", //TODO: Set to Kinesis Stream Name, and it has to include environment name too, e.g.: 'traveldealsKinesis-dev'
-        },
-        "AWSKinesis"
-    );
+    useEffect(() => {
+        const runAnalytics = async () => {
+            const currentUser = await Auth.currentAuthenticatedUser();
+            if (currentUser) {
+                Analytics.record(
+                    {
+                        data: {
+                            EventType: "clicked",
+                            UserId: currentUser.attributes["custom:USER_ID"],
+                            SessionId: "2",
+                            ItemId: movieID,
+                        },
+                        streamName: "amplifyAnalyticsExsper-staging", 
+                    },
+                    "AWSKinesis"
+                );
+            }
+            
+        }
+        runAnalytics()
+    }, [])
+    
+        
     
 
     return (

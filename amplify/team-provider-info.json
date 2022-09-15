@@ -12,19 +12,27 @@
       "AmplifyAppId": "d2zpym7slp1dfu"
     },
     "categories": {
-      "auth": {
-        "exsperimdb": {
-          "userPoolId": "ap-southeast-1_zlW2WzgrS",
-          "userPoolName": "newExsper",
-          "webClientId": "e63l4rfa50l3ft0skh5reqb4p",
-          "nativeClientId": "2fju9j8me5tn5bn9fmn2rfjqst"
-        }
-      },
       "function": {
         "ExsperAmplifyPresignupAutoconfirm": {
           "deploymentBucketName": "amplify-amplifyd5bd157199814-staging-100837-deployment",
           "s3Key": "amplify-builds/ExsperAmplifyPresignupAutoconfirm-424d36376738345a6b4c-build.zip"
         }
+      },
+      "auth": {
+        "exsperimdb39a8de76": {
+          "userPoolId": "ap-southeast-1_1eyeYTptG",
+          "userPoolName": "exsperPoolWithAnalytics-staging",
+          "webClientId": "2grsb7tll46df8772dnrisbjbr",
+          "nativeClientId": "287fjl00jdtp2qk7henrkqiqv2",
+          "identityPoolId": "ap-southeast-1:3a2a11f9-c222-4042-99d1-9dbc9088b2be",
+          "identityPoolName": "exsperPoolWithAnalytics__staging",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::557044894694:role/amplify-amplifyd5bd157199814-staging-100837-authRole",
+          "authRoleName": "amplify-amplifyd5bd157199814-staging-100837-authRole",
+          "unauthRoleArn": "arn:aws:iam::557044894694:role/amplify-amplifyd5bd157199814-staging-100837-unauthRole",
+          "unauthRoleName": "amplify-amplifyd5bd157199814-staging-100837-unauthRole"
+        },
+        "exsperPoolWithAnalytics": {}
       }
     }
   }

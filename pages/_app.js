@@ -15,6 +15,11 @@ import { ToastContainer } from "react-toastify";
 
 Amplify.configure({ ...awsconfig, ssr: true });
 Analytics.addPluggable(new AWSKinesisProvider());
+Analytics.configure({
+    AWSKinesis: {
+      region: awsconfig.aws_project_region
+    }
+});
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
