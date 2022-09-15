@@ -4,7 +4,7 @@ import TopPickItem from './TopPickItem'
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Loader from '../Loader';
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import { useUserData } from "../../hooks/useUserData";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -12,7 +12,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 const TopPicksForYou = () => {
     const {user, isLoading} = useUserData()
     const userid = user && user["custom:USER_ID"]
-    const { data: topPicksData, error: topPicksError } = useSWR(user ? `https://z1hi6ssas5.execute-api.ap-southeast-1.amazonaws.com/getPersonalize?userId=${userid}&numResults=5` : null, fetcher)
+    const { data: topPicksData, error: topPicksError } = useSWRImmutable(user ? `https://z1hi6ssas5.execute-api.ap-southeast-1.amazonaws.com/getPersonalize?userId=${userid}&numResults=5` : null, fetcher)
 
     return (
         <>

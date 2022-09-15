@@ -16,7 +16,7 @@ const TopPickItem = ({ movieID }) => {
     return (
         <>
             <div
-                style={{ background: bg, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPositionX: "center", borderRadius: 20 }}
+                style={{ background: bg, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPositionX: "center", borderRadius: 20 }}
                 className="text-white mx-5 mb-10 overflow-hidden movie_card_small flex-none"
             >
                 <Link href={mvLink}>
